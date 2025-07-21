@@ -28,7 +28,7 @@ io.on('connection',(socket)=>{
 
     console.log("✔✔a new user is connected",socket.id);
     // socket.broadcast.emit("Welcome",`You are Connected to User${socket.id}`);
-
+//broadcast-join msg
     socket.on("message",(message_from_Client)=>{
         console.log(message_from_Client);
         if(message_from_Client.room==""){
@@ -38,6 +38,10 @@ io.on('connection',(socket)=>{
         }
     })
 
+//custom room
+socket.on("join-room",(roomname)=>{
+            socket.join(roomname);
+        })
     socket.on("disconnect",()=>{
         console.log("❌❌user is DisConnectd",socket.id);
     })
